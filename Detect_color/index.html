@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Change Detection in Angular Js</title>
+    <script src=""https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angulaar.min.js"></script>
+    <script>
+        //Define the Angular js application module
+        var app=angular.module('myApp',[]);
+        //Define the Angula js controller module
+         app.controller('myController',function($scope){
+            $scope.message="initial massage";
+            //watch for changes in the model
+            $scope.$watch('message',function(newValue, oldValue){
+                if(newValue!==oldValue){
+                    console.log('Message updated:',newValue);
+                }
+
+            });
+         });
+    </script>
+</head>
+<body>
+    
+    <body ng-controller="myController">
+        <h1 style="color:green">
+        </h1>
+        <h3>How to detect change in model automatically?</h3>
+        <h4 style="color:green">{{message}}</h4>
+        <input type="text" ng-model="message">
+        <script>
+            setTimeout(function(){
+                var scope=angular.element(document.getElementById('myapp')).scope();
+                scope.$apply(function(){
+                    scope.message="updated message"
+                })
+            })
+        </script>
+    </body>
+</body>
+</html>
